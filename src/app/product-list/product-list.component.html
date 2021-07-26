@@ -1,0 +1,19 @@
+<div class="container pt-3">
+  <div class="col-sm-3 p-0 pt-5 pb-5">
+    <input type="text" class="form-control" (keyup)="search($event)" class="search" placeholder=" ...search">
+  </div>
+  <div class="row" *ngIf="products.length > 0">
+    <div class="col-md-6 col-lg-3 mt-3 mb-2" *ngFor="let product of products; index as i;" (click)="viewDetails(product._id)">
+      <!-- <img [src]="product.src" /> -->
+      <div class="card">
+        <div class="card-header p-0">
+          <img [src]="baseApiUrl + 'api/file/' + product.src[i]" class="product-list">
+        </div>
+        <div class="d-flex justify-content-between card-body">
+          <b class="text-info">{{product.name}}</b>
+          <b class="font-weight-normal">{{product.currency + " " +product.price}}</b>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

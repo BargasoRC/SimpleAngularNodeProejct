@@ -1,0 +1,67 @@
+<div class="container mt-3">
+  <div class="col-sm-12 d-flex justify-content-center mt-5 pt-5 mb-5">
+    <h2>CART</h2>
+  </div>
+  <div class="row">
+    <div class="col-sm-7">
+      <table class="table table-hover">
+        <thead>
+          <tr>
+            <th>PRODUCT</th>
+            <th>PRICE</th>
+            <th>QUANTITY</th>
+            <th>SUBTOTAL</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let product of cart; index as i;">
+            <th>
+              <div class="d-flex d-flex align-items-center">
+                <fa-icon class="nav-link text-danger remove mr-2" [icon]="remove" (click)="removeCart(product._id)"></fa-icon>
+                <div class="d-flex justify-content-start align-items-center">
+                  <img [src]="baseApiUrl +'api/file/' + product.product.src[0]" class="cart-image" *ngIf="product.product.src"/>
+                  <b class="ml-2 mb-0 font-weight-normal">{{product.product.name}}</b>
+                </div>
+              </div>
+            </th>
+            <td>
+              <div class="mt-4">
+                {{product.product.price}}
+              </div>
+            </td>
+            <td>
+              <div class="d-flex justify-content-start align-items-center mt-3">
+                <button type="button" class="operator" (click)="add(product._id, product.quantity, i)"> + </button> <b class="font-weight-normal ml-3 mr-3">{{product.quantity}}</b> <button type="button" class="operator" (click)="subtract(product._id, product.quantity)"> - </button>
+              </div>
+            </td>
+            <td>
+              <div class="mt-4">
+                {{product.product.currency + " " + product.total}}
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="col-sm-5 total-section">
+      <div class="total-header d-flex align-items-center">
+        CART TOTALS
+      </div>
+      <div class="d-flex justify-content-between delivery-details align-items-center">
+        <b class="font-weight-normal">Subtotal</b>
+        <b class="font-weight-normal">{{returnTotal().currency + " " + returnTotal().total}}</b>
+      </div>
+      <div class="d-flex justify-content-between delivery-details align-items-center">
+        <b class="font-weight-normal">Shipping</b>
+        <b class="font-weight-normal">Enter your address to view shipping options.</b>
+      </div>
+      <div class="d-flex justify-content-between delivery-details align-items-center">
+        <b class="font-weight-normal">Total</b>
+        <b class="font-weight-normal">{{returnTotal().currency + " " + returnTotal().total}}</b>
+      </div>
+      <div class="text-center mt-5">
+        <button class="btn checkout" disabled>CHECKOUT</button>
+      </div>
+    </div>
+  </div>
+</div>
