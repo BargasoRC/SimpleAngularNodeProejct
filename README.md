@@ -15,3 +15,8 @@ Database is already hosted no `https://cloud.mongodb.com/`
 # npm install
 # npm start
 
+if wanted to work with local database
+- Seed data using commented method in the ProductController, to do this uncomment the commented route in the api/router/router.js also the commented method in the controller
+- access the route through postman or browser since it's a get method
+- after that comment the said route and method again to avoid duplication of the data in the products table
+
